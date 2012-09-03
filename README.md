@@ -1,9 +1,10 @@
 TruckCompanyEAR
 =========
 
+** We should upload only useful sources **
+
 Always keep this folder structure:
 
-** We should upload only useful sources **
 
 1. Client Side: JS/Jquery. It should not be within the Eclipse Project.
 
