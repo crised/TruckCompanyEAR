@@ -3,6 +3,7 @@ package service;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaQuery;
 
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
@@ -29,19 +30,31 @@ public abstract class AbstractFacade<T> {
         return getEntityManager().find(entityClass, id);
     }
 
+    @SuppressWarnings("unchecked")
     public List<T> findAll() {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        CriteriaQuery<T> cq = (CriteriaQuery<T>) getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
-        return getEntityManager().createQuery(cq).getResultList();
+        List<T> resultList = getEntityManager().createQuery(cq).getResultList();
+        bootstrapCollection(resultList);
+        return resultList;
     }
 
+    private void bootstrapCollection(List<T> resultList) {
+        if (resultList.size() > 0) {
+            resultList.get(0);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
     public List<T> findRange(int[] range) {
-        javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        CriteriaQuery<T> cq = (CriteriaQuery<T>) getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         q.setMaxResults(range[1] - range[0]);
         q.setFirstResult(range[0]);
-        return q.getResultList();
+        List<T> resultList = q.getResultList();
+        bootstrapCollection(resultList);
+        return resultList;
     }
 
     public int count() {

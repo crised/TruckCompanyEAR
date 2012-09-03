@@ -6,6 +6,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,7 +44,7 @@ public class TcTruck implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "plate")
     private String plate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "truckId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "truckId", fetch=FetchType.EAGER)
     private Collection<TcConsumption> tcConsumptionCollection;
 
     public TcTruck() {
