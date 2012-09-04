@@ -1,7 +1,5 @@
 package web;
-
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -12,27 +10,28 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-
-import service.TcConsumptionFacade;
-
-import entities.TcConsumption;
+import service.TcUserFacade;
+import util.SecurityUtil;
+import entities.TcUser;
 
 @Stateless
-@Path("entities.tcconsumption")
-public class TcConsumptionFacadeREST {
+@Path("entities.tcuser")
+public class TcUserService {
 	
 	@EJB
-	private TcConsumptionFacade facade;
-
+	private TcUserFacade facade;
+	
     @POST
     @Consumes({"application/xml", "application/json"})
-    public void create(TcConsumption entity) {
+    public void create(TcUser entity) {
+    	String hash = SecurityUtil.hash(entity.getPassword());
+    	entity.setPassword(hash);
     	facade.create(entity);
     }
 
     @PUT
     @Consumes({"application/xml", "application/json"})
-    public void edit(TcConsumption entity) {
+    public void edit(TcUser entity) {
         facade.edit(entity);
     }
 
@@ -45,20 +44,20 @@ public class TcConsumptionFacadeREST {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public TcConsumption find(@PathParam("id") Integer id) {
-        return facade.find(id);
+    public TcUser find(@PathParam("id") Integer id) {
+    	return facade.find(id);
     }
 
     @GET
     @Produces({"application/xml", "application/json"})
-    public List<TcConsumption> findAll() {
+    public List<TcUser> findAll() {
         return facade.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({"application/xml", "application/json"})
-    public List<TcConsumption> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<TcUser> findRange(Integer from, Integer to) {
         return facade.findRange(from, to);
     }
 
@@ -66,7 +65,6 @@ public class TcConsumptionFacadeREST {
     @Path("count")
     @Produces("text/plain")
     public String countREST() {
-        return facade.countREST();
-    }    
+    	return facade.countREST();
+    }
 }
-

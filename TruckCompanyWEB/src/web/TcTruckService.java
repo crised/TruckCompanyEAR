@@ -18,7 +18,7 @@ import service.TcTruckFacade;
 
 @Stateless
 @Path("entities.tctruck")
-public class TcTruckFacadeREST {
+public class TcTruckService {
 	
 	@EJB
 	private TcTruckFacade facade;
