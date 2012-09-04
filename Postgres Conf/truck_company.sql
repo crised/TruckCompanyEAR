@@ -59,3 +59,31 @@ WITH (
 );
 ALTER TABLE tc_consumption
   OWNER TO postgres;
+
+-- Table: tc_role
+
+-- DROP TABLE tc_role;
+
+CREATE TABLE tc_role
+(
+  user_id serial NOT NULL,
+  name character varying(255) NOT NULL,
+  CONSTRAINT tc_role_pkey PRIMARY KEY (user_id ),
+  CONSTRAINT user_role FOREIGN KEY (user_id)
+      REFERENCES tc_user (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE tc_role
+  OWNER TO postgres;
+
+-- Index: fki_user_role
+
+-- DROP INDEX fki_user_role;
+
+CREATE INDEX fki_user_role
+  ON tc_role
+  USING btree
+  (user_id );
