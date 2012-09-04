@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import service.TcUserFacade;
+import util.SecurityUtil;
 import entities.TcUser;
 
 @Stateless
@@ -23,6 +24,8 @@ public class TcUserFacadeREST {
     @POST
     @Consumes({"application/xml", "application/json"})
     public void create(TcUser entity) {
+    	String hash = SecurityUtil.hash(entity.getPassword());
+    	entity.setPassword(hash);
     	facade.create(entity);
     }
 
