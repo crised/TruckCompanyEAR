@@ -13,3 +13,6 @@ Always keep this folder structure:
 3. TruckCompanyEJB: Only Sources of EJB Project. No Eclipse configuration.
 
 4. PostgreSQL: Configuration of the DB.
+
+5. Jboss Config
+
