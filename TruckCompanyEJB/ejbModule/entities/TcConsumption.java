@@ -1,7 +1,3 @@
-/*
- * 
- * 
- */
 package entities;
 
 import java.io.Serializable;
@@ -19,44 +15,40 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author Kalyani Sakthivel <kalyani.sakthivel at yahoo.in>
- */
 @Entity
 @Table(name = "tc_consumption")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TcConsumption.findAll", query = "SELECT t FROM TcConsumption t"),
-    @NamedQuery(name = "TcConsumption.findById", query = "SELECT t FROM TcConsumption t WHERE t.id = :id"),
+    @NamedQuery(name = "TcConsumption.findById", query = "SELECT t FROM TcConsumption t WHERE t.id_consumption = :id"),
     @NamedQuery(name = "TcConsumption.findByConsumption", query = "SELECT t FROM TcConsumption t WHERE t.consumption = :consumption")})
 public class TcConsumption implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "id_consumption")
+    private Integer id_consumption;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "consumption")
     private BigDecimal consumption;
-    @JoinColumn(name = "truck_id", referencedColumnName = "id")
+    @JoinColumn(name = "ctruck_id", referencedColumnName = "id_truck")
     @ManyToOne(optional = false)
-    private TcTruck truckId;
+    private TcTruck truckmap; //truckId refers to the complete entity!
 
     public TcConsumption() {
     }
 
     public TcConsumption(Integer id) {
-        this.id = id;
+        this.id_consumption = id;
     }
 
     public Integer getId() {
-        return id;
+        return id_consumption;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.id_consumption = id;
     }
 
     public BigDecimal getConsumption() {
@@ -67,18 +59,18 @@ public class TcConsumption implements Serializable {
         this.consumption = consumption;
     }
 
-    public TcTruck getTruckId() {
-        return truckId;
+    public TcTruck gettruckmap() {
+        return truckmap;
     }
 
-    public void setTruckId(TcTruck truckId) {
-        this.truckId = truckId;
+    public void settruckmap(TcTruck truckId) {
+        this.truckmap = truckId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (id_consumption != null ? id_consumption.hashCode() : 0);
         return hash;
     }
 
@@ -89,7 +81,7 @@ public class TcConsumption implements Serializable {
             return false;
         }
         TcConsumption other = (TcConsumption) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id_consumption == null && other.id_consumption != null) || (this.id_consumption != null && !this.id_consumption.equals(other.id_consumption))) {
             return false;
         }
         return true;
@@ -97,7 +89,7 @@ public class TcConsumption implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.TcConsumption[ id=" + id + " ]";
+        return "entities.TcConsumption[ id=" + id_consumption + " ]";
     }
     
 }

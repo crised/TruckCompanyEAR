@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TcTruck.findAll", query = "SELECT t FROM TcTruck t"),
-    @NamedQuery(name = "TcTruck.findById", query = "SELECT t FROM TcTruck t WHERE t.id = :id"),
+    @NamedQuery(name = "TcTruck.findById", query = "SELECT t FROM TcTruck t WHERE t.id_truck = :id"),
     @NamedQuery(name = "TcTruck.findByBrand", query = "SELECT t FROM TcTruck t WHERE t.brand = :brand"),
     @NamedQuery(name = "TcTruck.findByPlate", query = "SELECT t FROM TcTruck t WHERE t.plate = :plate")})
 public class TcTruck implements Serializable {
@@ -32,8 +32,8 @@ public class TcTruck implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "id_truck")
+    private Integer id_truck;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2147483647)
@@ -44,28 +44,28 @@ public class TcTruck implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "plate")
     private String plate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "truckId", fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "truckmap", fetch=FetchType.EAGER)
     private Collection<TcConsumption> tcConsumptionCollection;
 
     public TcTruck() {
     }
 
     public TcTruck(Integer id) {
-        this.id = id;
+        this.id_truck = id;
     }
 
     public TcTruck(Integer id, String brand, String plate) {
-        this.id = id;
+        this.id_truck = id;
         this.brand = brand;
         this.plate = plate;
     }
 
     public Integer getId() {
-        return id;
+        return id_truck;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.id_truck = id;
     }
 
     public String getBrand() {
@@ -96,7 +96,7 @@ public class TcTruck implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (id_truck != null ? id_truck.hashCode() : 0);
         return hash;
     }
 
@@ -107,7 +107,7 @@ public class TcTruck implements Serializable {
             return false;
         }
         TcTruck other = (TcTruck) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id_truck == null && other.id_truck != null) || (this.id_truck != null && !this.id_truck.equals(other.id_truck))) {
             return false;
         }
         return true;
@@ -115,7 +115,7 @@ public class TcTruck implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.TcTruck[ id=" + id + " ]";
+        return "entities.TcTruck[ id=" + id_truck + " ]";
     }
     
 }

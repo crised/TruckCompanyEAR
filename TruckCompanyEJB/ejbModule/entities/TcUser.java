@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement // Mapea una clase a XML
 @NamedQueries({
     @NamedQuery(name = "TcUser.findAll", query = "SELECT t FROM TcUser t"),
-    @NamedQuery(name = "TcUser.findById", query = "SELECT t FROM TcUser t WHERE t.id = :id"),
+    @NamedQuery(name = "TcUser.findById", query = "SELECT t FROM TcUser t WHERE t.id_user = :id"),
     @NamedQuery(name = "TcUser.findByUsername", query = "SELECT t FROM TcUser t WHERE t.username = :username"),
     @NamedQuery(name = "TcUser.findByPassword", query = "SELECT t FROM TcUser t WHERE t.password = :password")})
 
@@ -29,8 +29,8 @@ public class TcUser implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
+    @Column(name = "id_user")
+    private Integer id_user;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 2147483647)
@@ -46,21 +46,21 @@ public class TcUser implements Serializable {
     }
 
     public TcUser(Integer id) {
-        this.id = id;
+        this.id_user = id;
     }
 
     public TcUser(Integer id, String username, String password) {
-        this.id = id;
+        this.id_user = id;
         this.username = username;
         this.password = password;
     }
 
     public Integer getId() {
-        return id;
+        return id_user;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.id_user = id;
     }
 
     public String getUsername() {
@@ -82,7 +82,7 @@ public class TcUser implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (id_user != null ? id_user.hashCode() : 0);
         return hash;
     }
 
@@ -93,7 +93,7 @@ public class TcUser implements Serializable {
             return false;
         }
         TcUser other = (TcUser) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id_user == null && other.id_user != null) || (this.id_user != null && !this.id_user.equals(other.id_user))) {
             return false;
         }
         return true;
@@ -101,7 +101,7 @@ public class TcUser implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.TcUser[ id=" + id + " ]";
+        return "entities.TcUser[ id=" + id_user + " ]";
     }
     
 }
