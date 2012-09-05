@@ -3,6 +3,20 @@ TruckCompanyEAR
 
 ** We should upload only useful sources **
 
+Idea:
+
+Make a sample web app (not real) to adapt it to small businesses needs. 
+
+This ficticious web app / service (client & server side clearly separated) consist of:
+
+10 truck small company that needs to keep track of the diesel consumptin of each truck. 
+
+Therefore there are 3 PostgreSQL tables:
+
+- tc_user: users/password table
+- tc_truck: truck description
+- tr_consumption: consumption of each truck, related to tc_truck
+
 Always keep this folder structure:
 
 
