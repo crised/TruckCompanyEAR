@@ -28,5 +28,5 @@ Always keep this folder structure:
 
 4. PostgreSQL: Configuration of the DB.
 
-5. Jboss Config
+5. Jboss AS7 Config
 
