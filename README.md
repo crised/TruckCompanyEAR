@@ -15,7 +15,7 @@ Therefore there are 3 PostgreSQL tables:
 
 - tc_user: users/password table
 - tc_truck: truck description
-- tr_consumption: consumption of each truck, related to tc_truck
+- tc_consumption: consumption of each truck, related to tc_truck
 
 Always keep this folder structure:
 
