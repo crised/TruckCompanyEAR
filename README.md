@@ -1,6 +1,7 @@
 TruckCompanyEAR
 =========
 
+** Never push without synchronizing first **
 ** We should upload only useful sources **
 
 Idea:
