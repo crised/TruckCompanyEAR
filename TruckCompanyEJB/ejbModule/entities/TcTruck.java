@@ -1,27 +1,20 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "tc_truck")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TcTruck.findAll", query = "SELECT t FROM TcTruck t"),
     @NamedQuery(name = "TcTruck.findById", query = "SELECT t FROM TcTruck t WHERE t.id_truck = :id"),
@@ -44,8 +37,6 @@ public class TcTruck implements Serializable {
     @Size(min = 1, max = 2147483647)
     @Column(name = "plate")
     private String plate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "truckmap", fetch=FetchType.EAGER)
-    private Collection<TcConsumption> tcConsumptionCollection;
 
     public TcTruck() {
     }
@@ -84,15 +75,6 @@ public class TcTruck implements Serializable {
         this.plate = plate;
     }
 
-    @XmlTransient
-    public Collection<TcConsumption> getTcConsumptionCollection() {
-        return tcConsumptionCollection;
-    }
-
-    public void setTcConsumptionCollection(Collection<TcConsumption> tcConsumptionCollection) {
-        this.tcConsumptionCollection = tcConsumptionCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -117,5 +99,4 @@ public class TcTruck implements Serializable {
     public String toString() {
         return "entities.TcTruck[ id=" + id_truck + " ]";
     }
-    
 }

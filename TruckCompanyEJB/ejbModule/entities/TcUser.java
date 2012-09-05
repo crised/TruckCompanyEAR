@@ -12,11 +12,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "tc_user")
-@XmlRootElement // Mapea una clase a XML
 @NamedQueries({
     @NamedQuery(name = "TcUser.findAll", query = "SELECT t FROM TcUser t"),
     @NamedQuery(name = "TcUser.findById", query = "SELECT t FROM TcUser t WHERE t.id_user = :id"),
