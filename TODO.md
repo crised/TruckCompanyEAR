@@ -9,3 +9,5 @@ TODO LIST
 
 3. Try packing everything inside one WAR file. 
 
+4. Authentication/Authorization
+
