@@ -2,6 +2,7 @@ package web;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -19,6 +20,7 @@ import entities.TcConsumption;
 
 @Stateless
 @Path("entities.tcconsumption")
+@RolesAllowed({ SecurityRole.USER })
 public class TcConsumptionService {
 	
 	@EJB

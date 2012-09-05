@@ -3,6 +3,7 @@ package web;
 import entities.TcTruck;
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
@@ -18,6 +19,7 @@ import service.TcTruckFacade;
 
 @Stateless
 @Path("entities.tctruck")
+@RolesAllowed({ SecurityRole.USER })
 public class TcTruckService {
 	
 	@EJB
