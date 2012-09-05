@@ -25,13 +25,13 @@ public class TcConsumptionService {
 	private TcConsumptionFacade facade;
 
     @POST
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({"application/json"})
     public void create(TcConsumption entity) {
     	facade.create(entity);
     }
 
     @PUT
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({"application/json"})
     public void edit(TcConsumption entity) {
         facade.edit(entity);
     }
@@ -44,20 +44,20 @@ public class TcConsumptionService {
 
     @GET
     @Path("{id}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public TcConsumption find(@PathParam("id") Integer id) {
         return facade.find(id);
     }
 
     @GET
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<TcConsumption> findAll() {
         return facade.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<TcConsumption> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return facade.findRange(from, to);
     }
@@ -69,4 +69,3 @@ public class TcConsumptionService {
         return facade.countREST();
     }    
 }
-

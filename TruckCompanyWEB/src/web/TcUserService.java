@@ -22,7 +22,7 @@ public class TcUserService {
 	private TcUserFacade facade;
 	
     @POST
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({"application/json"})
     public void create(TcUser entity) {
     	String hash = SecurityUtil.hash(entity.getPassword());
     	entity.setPassword(hash);
@@ -30,7 +30,7 @@ public class TcUserService {
     }
 
     @PUT
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({"application/json"})
     public void edit(TcUser entity) {
         facade.edit(entity);
     }
@@ -43,20 +43,20 @@ public class TcUserService {
 
     @GET
     @Path("{id}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public TcUser find(@PathParam("id") Integer id) {
     	return facade.find(id);
     }
 
     @GET
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<TcUser> findAll() {
         return facade.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<TcUser> findRange(Integer from, Integer to) {
         return facade.findRange(from, to);
     }

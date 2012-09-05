@@ -24,13 +24,13 @@ public class TcTruckService {
 	private TcTruckFacade facade;
 
     @POST
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({"application/json"})
     public void create(TcTruck entity) {
         facade.create(entity);
     }
 
     @PUT
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({"application/json"})
     public void edit(TcTruck entity) {
         facade.edit(entity);
     }
@@ -43,20 +43,20 @@ public class TcTruckService {
 
     @GET
     @Path("{id}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public TcTruck find(@PathParam("id") Integer id) {
         return facade.find(id);
     }
 
     @GET
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<TcTruck> findAll() {
         return facade.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<TcTruck> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return facade.findRange(from, to);
     }
@@ -68,4 +68,3 @@ public class TcTruckService {
         return facade.countREST();
     }
 }
-
