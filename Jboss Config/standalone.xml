@@ -249,7 +249,7 @@
                             <module-option name="dsJndiName" value="java:jboss/datasources/truck_company"/>
                             <module-option name="principalsQuery" value="select password from tc_user where username=?"/>
                             <module-option name="rolesQuery" value="select r.name, 'Roles' from tc_role r, tc_user u where u.id=r.user_id and u.username=?"/>
-                            <module-option name="hashAlgorithm">SHA1</module-option>
+                            <module-option name="hashAlgorithm">SHA-1</module-option>
                             <module-option name="hashEncoding">base64</module-option> 
                         </login-module>
                     </authentication>
