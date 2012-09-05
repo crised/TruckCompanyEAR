@@ -70,7 +70,7 @@ CREATE TABLE tc_role
   name character varying(255) NOT NULL,
   CONSTRAINT tc_role_pkey PRIMARY KEY (user_id ),
   CONSTRAINT user_role FOREIGN KEY (user_id)
-      REFERENCES tc_user (id) MATCH SIMPLE
+      REFERENCES tc_user (id_user) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 )
 WITH (
