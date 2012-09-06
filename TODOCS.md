@@ -19,3 +19,6 @@ Please sugest other.
 
 3. Test all the functions, modify.
 
+Possible issues: 
+
+1. Browser tab change
