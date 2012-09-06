@@ -1,7 +1,5 @@
-TruckCompanyEAR
-=========
-
 TODO LIST
+=========
 
 1. Hash/Salt Password
 
@@ -10,4 +8,6 @@ TODO LIST
 3. Try packing everything inside one WAR file. 
 
 4. Authentication/Authorization (remember me? logic / session expiration)
+
+5. Basic Auth
 
