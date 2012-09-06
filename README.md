@@ -12,7 +12,7 @@ This ficticious web app / service (client & server side clearly separated) consi
 
 10 truck small company that needs to keep track of the diesel consumptin of each truck. 
 
-Therefore there are 3 PostgreSQL tables:
+Therefore there are 4 PostgreSQL tables:
 
 - tc_user: users/password table
 - tc_truck: truck description
