@@ -2,6 +2,7 @@ package org.crised.truckcompany.service;
 
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,7 +11,8 @@ import org.crised.truckcompany.model.TcTruck;
 @Stateless
 public class TcTruckFacade extends AbstractFacade<TcTruck> {
 	
-    @PersistenceContext(unitName = "TruckCompanyEJBPU")
+	//@PersistenceContext(unitName = "TruckCompanyEJBPU")
+	@Inject
     private EntityManager em;
 
     public TcTruckFacade() {
