@@ -1,42 +1,32 @@
 package entities;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tc_user")
-@NamedQueries({
-    @NamedQuery(name = "TcUser.findAll", query = "SELECT t FROM TcUser t"),
-    @NamedQuery(name = "TcUser.findById", query = "SELECT t FROM TcUser t WHERE t.id_user = :id"),
-    @NamedQuery(name = "TcUser.findByUsername", query = "SELECT t FROM TcUser t WHERE t.username = :username"),
-    @NamedQuery(name = "TcUser.findByPassword", query = "SELECT t FROM TcUser t WHERE t.password = :password")})
-
-public class TcUser implements Serializable {
+public class TcUser extends GenericEntity {
 	
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id_user")
     private Integer id_user;
-    @Basic(optional = false)
+    
     @NotNull
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 255)
     @Column(name = "username")
     private String username;
-    @Basic(optional = false)
+    
     @NotNull
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 255)
     @Column(name = "password")
     private String password;
 
@@ -101,5 +91,4 @@ public class TcUser implements Serializable {
     public String toString() {
         return "entities.TcUser[ id=" + id_user + " ]";
     }
-    
 }

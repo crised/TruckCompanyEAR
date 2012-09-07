@@ -1,40 +1,32 @@
 package entities;
 
-import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tc_truck")
-@NamedQueries({
-    @NamedQuery(name = "TcTruck.findAll", query = "SELECT t FROM TcTruck t"),
-    @NamedQuery(name = "TcTruck.findById", query = "SELECT t FROM TcTruck t WHERE t.id_truck = :id"),
-    @NamedQuery(name = "TcTruck.findByBrand", query = "SELECT t FROM TcTruck t WHERE t.brand = :brand"),
-    @NamedQuery(name = "TcTruck.findByPlate", query = "SELECT t FROM TcTruck t WHERE t.plate = :plate")})
-public class TcTruck implements Serializable {
+public class TcTruck extends GenericEntity {
+	
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id_truck")
     private Integer id_truck;
-    @Basic(optional = false)
+    
     @NotNull
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 255)
     @Column(name = "brand")
     private String brand;
-    @Basic(optional = false)
+    
     @NotNull
-    @Size(min = 1, max = 2147483647)
+    @Size(min = 1, max = 255)
     @Column(name = "plate")
     private String plate;
 

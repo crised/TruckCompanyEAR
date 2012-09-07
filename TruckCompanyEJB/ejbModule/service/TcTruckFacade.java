@@ -1,54 +1,59 @@
 package service;
 
 import entities.TcTruck;
+
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import util.QueryUtil;
 
 @Stateless
-public class TcTruckFacade extends AbstractFacade<TcTruck> {
+public class TcTruckFacade {
 	
     @PersistenceContext(unitName = "TruckCompanyEJBPU")
     private EntityManager em;
 
-    public TcTruckFacade() {
-        super(TcTruck.class);
-    }
-
-    @Override
     public void create(TcTruck entity) {
-        super.create(entity);
+        em.persist(entity);
     }
 
-    @Override
     public void edit(TcTruck entity) {
-        super.edit(entity);
+        em.merge(entity);
     }
 
     public void remove(Integer id) {
-        super.remove(super.find(id));
+    	TypedQuery<TcTruck> query = em.createQuery("SELECT t FROM TcTruck t WHERE t.id = :id AND t.deleted = FALSE", TcTruck.class);
+    	query.setParameter("id", id);
+    	TcTruck entity = query.getSingleResult();
+        entity.setDeleted(true);
+        entity.setDeletedDate(new Date());
+        em.persist(entity);
     }
 
     public TcTruck find(Integer id) {
-        return super.find(id);
+    	TypedQuery<TcTruck> query = em.createQuery("SELECT t FROM TcTruck t WHERE t.id = :id AND t.deleted = FALSE", TcTruck.class);
+    	query.setParameter("id", id);    	
+        return QueryUtil.getSingleResult(query.getResultList());
     }
 
-    @Override
     public List<TcTruck> findAll() {
-        return super.findAll();
+    	TypedQuery<TcTruck> query = em.createQuery("SELECT t FROM TcTruck t WHERE t.deleted = FALSE", TcTruck.class);
+        return query.getResultList();
     }
 
     public List<TcTruck> findRange(Integer from, Integer to) {
-        return super.findRange(new int[]{from, to});
+    	TypedQuery<TcTruck> query = em.createQuery("SELECT t FROM TcTruck t WHERE t.deleted = FALSE", TcTruck.class);
+    	query.setMaxResults(to - from);
+        query.setFirstResult(from);
+        return query.getResultList();
     }
 
     public String countREST() {
-        return String.valueOf(super.count());
-    }
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+    	TypedQuery<Long> query = em.createQuery("SELECT COUNT(t.id) FROM TcTruck t WHERE t.deleted = FALSE", Long.class);
+        return String.valueOf(query.getSingleResult().intValue());
     }    
 }

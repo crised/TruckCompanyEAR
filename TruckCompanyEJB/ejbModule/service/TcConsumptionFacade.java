@@ -1,54 +1,59 @@
 package service;
 
 import entities.TcConsumption;
+
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import util.QueryUtil;
 
 @Stateless
-public class TcConsumptionFacade extends AbstractFacade<TcConsumption> {
+public class TcConsumptionFacade {
 	
     @PersistenceContext(unitName = "TruckCompanyEJBPU")
     private EntityManager em;
 
-    public TcConsumptionFacade() {
-        super(TcConsumption.class);
-    }
-
-    @Override
     public void create(TcConsumption entity) {
-        super.create(entity);
+        em.persist(entity);
     }
 
-    @Override
     public void edit(TcConsumption entity) {
-        super.edit(entity);
+        em.merge(entity);
     }
 
     public void remove(Integer id) {
-        super.remove(super.find(id));
+    	TypedQuery<TcConsumption> query = em.createQuery("SELECT c FROM TcConsumption c WHERE c.id = :id AND c.deleted = FALSE", TcConsumption.class);
+    	query.setParameter("id", id);
+    	TcConsumption entity = query.getSingleResult();
+        entity.setDeleted(true);
+        entity.setDeletedDate(new Date());
+        em.persist(entity);
     }
 
     public TcConsumption find(Integer id) {
-        return super.find(id);
+    	TypedQuery<TcConsumption> query = em.createQuery("SELECT c FROM TcConsumption c WHERE c.id = :id AND c.deleted = FALSE", TcConsumption.class);
+    	query.setParameter("id", id);    	
+        return QueryUtil.getSingleResult(query.getResultList());
     }
 
-    @Override
     public List<TcConsumption> findAll() {
-        return super.findAll();
+    	TypedQuery<TcConsumption> query = em.createQuery("SELECT c FROM TcConsumption c WHERE c.deleted = FALSE", TcConsumption.class);
+        return query.getResultList();
     }
 
     public List<TcConsumption> findRange(Integer from, Integer to) {
-        return super.findRange(new int[]{from, to});
+    	TypedQuery<TcConsumption> query = em.createQuery("SELECT c FROM TcConsumption c WHERE c.deleted = FALSE", TcConsumption.class);
+    	query.setMaxResults(to - from);
+        query.setFirstResult(from);
+        return query.getResultList();
     }
 
     public String countREST() {
-        return String.valueOf(super.count());
-    }
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
+    	TypedQuery<Long> query = em.createQuery("SELECT COUNT(c.id) FROM TcConsumption c WHERE c.deleted = FALSE", Long.class);
+        return String.valueOf(query.getSingleResult().intValue());
     }    
 }

@@ -1,48 +1,49 @@
 package service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.jboss.logging.Logger;
+
+import util.QueryUtil;
 
 import entities.TcUser;
 
 @Stateless
-public class TcUserFacade extends AbstractFacade<TcUser> {
+public class TcUserFacade {
+	
 	private static final Logger LOGGER = Logger.getLogger(TcUserFacade.class);
 	
     @PersistenceContext(unitName = "TruckCompanyEJBPU")
     private EntityManager em;
 
-    public TcUserFacade() {
-        super(TcUser.class);
-    }
-
-    @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void create(TcUser entity) {
-        super.create(entity);
+        em.persist(entity);
         LOGGER.info("Created user: " + entity);
     }
 
-    @Override
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void edit(TcUser entity) {
-        super.edit(entity);
+        em.merge(entity);
     }
 
-    @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void remove(Integer id) {
-        super.remove(super.find(id));
+    	TypedQuery<TcUser> query = em.createQuery("SELECT u FROM TcUser u WHERE u.id = :id AND u.deleted = FALSE", TcUser.class);
+    	query.setParameter("id", id);
+        TcUser entity = query.getSingleResult();
+        entity.setDeleted(true);
+        entity.setDeletedDate(new Date());
+        em.persist(entity);
     }
 
     public TcUser find(Integer id) {
-        TcUser found = super.find(id);
+    	TypedQuery<TcUser> query = em.createQuery("SELECT u FROM TcUser u WHERE u.id = :id AND u.deleted = FALSE", TcUser.class);
+    	query.setParameter("id", id);    	
+        TcUser found = QueryUtil.getSingleResult(query.getResultList());
         if (found == null) {
         	LOGGER.info("User not found: " + id);
         } else {
@@ -51,9 +52,9 @@ public class TcUserFacade extends AbstractFacade<TcUser> {
 		return found;
     }
 
-    @Override
     public List<TcUser> findAll() {
-        List<TcUser> found = super.findAll();
+    	TypedQuery<TcUser> query = em.createQuery("SELECT u FROM TcUser u WHERE u.deleted = FALSE", TcUser.class);
+        List<TcUser> found = query.getResultList();
         if (found.size() == 0) {
         	LOGGER.info("No users found");
         } else {
@@ -66,7 +67,10 @@ public class TcUserFacade extends AbstractFacade<TcUser> {
     }
 
     public List<TcUser> findRange(Integer from, Integer to) {
-        List<TcUser> found = super.findRange(new int[]{from, to});
+    	TypedQuery<TcUser> query = em.createQuery("SELECT u FROM TcUser u WHERE u.deleted = FALSE", TcUser.class);
+    	query.setMaxResults(to - from);
+        query.setFirstResult(from);
+        List<TcUser> found = query.getResultList();
         if (found.size() == 0) {
         	LOGGER.info("No users found");
         } else {
@@ -79,13 +83,9 @@ public class TcUserFacade extends AbstractFacade<TcUser> {
     }
 
     public String countREST() {
-        int count = super.count();
+    	TypedQuery<Long> query = em.createQuery("SELECT COUNT(u.id) FROM TcUser u WHERE u.deleted = FALSE", Long.class);
+        int count = query.getSingleResult().intValue();
         LOGGER.info("Users in DB:" + count);
 		return String.valueOf(count);
-    }
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
     }
 }
