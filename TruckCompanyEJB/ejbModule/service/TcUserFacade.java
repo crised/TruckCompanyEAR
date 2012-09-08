@@ -31,10 +31,7 @@ public class TcUserFacade {
         em.merge(entity);
     }
 
-    public void remove(Integer id) {
-    	TypedQuery<TcUser> query = em.createQuery("SELECT u FROM TcUser u WHERE u.id = :id AND u.deleted = FALSE", TcUser.class);
-    	query.setParameter("id", id);
-        TcUser entity = query.getSingleResult();
+    public void remove(TcUser entity) {
         entity.setDeleted(true);
         entity.setDeletedDate(new Date());
         em.persist(entity);
@@ -50,6 +47,12 @@ public class TcUserFacade {
         	LOGGER.info("Found user: " + found);
         }
 		return found;
+    }
+    
+    public TcUser find(String username) {
+    	TypedQuery<TcUser> query = em.createQuery("SELECT u FROM TcUser u WHERE u.username = :username AND u.deleted = FALSE", TcUser.class);
+    	query.setParameter("username", username);    	
+        return QueryUtil.getSingleResult(query.getResultList());
     }
 
     public List<TcUser> findAll() {

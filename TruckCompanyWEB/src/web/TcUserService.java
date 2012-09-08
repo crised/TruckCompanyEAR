@@ -41,7 +41,11 @@ public class TcUserService {
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {
-        facade.remove(id);
+    	TcUser entity = facade.find(id);
+    	if (entity == null) {
+    		throw new IllegalArgumentException();
+    	}
+        facade.remove(entity);
     }
 
     @GET

@@ -40,7 +40,11 @@ public class TcTruckService {
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {
-        facade.remove(id);
+    	TcTruck entity = facade.find(id);
+    	if (entity == null) {
+    		throw new IllegalArgumentException();
+    	}
+        facade.remove(entity);
     }
 
     @GET

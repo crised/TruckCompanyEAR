@@ -13,23 +13,40 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.SecurityContext;
 
+import service.TcAuditFacade;
 import service.TcConsumptionFacade;
+import service.TcUserFacade;
 
 import entities.TcConsumption;
+import entities.TcUser;
 
 @Stateless
 @Path("entities.tcconsumption")
 @RolesAllowed({ SecurityRole.USER })
 public class TcConsumptionService {
-	
+		
 	@EJB
 	private TcConsumptionFacade facade;
 
+	@EJB
+	private TcUserFacade userFacade;
+
+	@EJB
+	private TcAuditFacade auditFacade;
+
     @POST
     @Consumes({"application/json"})
-    public void create(TcConsumption entity) {
+    public void create(@Context SecurityContext context, TcConsumption entity) {    	
     	facade.create(entity);
+    	
+    	TcUser user = userFacade.find(context.getUserPrincipal().getName());
+    	if (user == null) {
+    		throw new IllegalArgumentException();
+    	}
+    	auditFacade.auditCreate(user, entity);
     }
 
     @PUT
@@ -40,8 +57,18 @@ public class TcConsumptionService {
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        facade.remove(id);
+    public void remove(@Context SecurityContext context, @PathParam("id") Integer id) {
+    	TcConsumption consumption = facade.find(id);
+    	if (consumption == null) {
+    		throw new IllegalArgumentException();
+    	}    	
+        facade.remove(consumption);
+        
+        TcUser user = userFacade.find(context.getUserPrincipal().getName());
+    	if (user == null) {
+    		throw new IllegalArgumentException();
+    	}
+    	auditFacade.auditDelete(user, consumption);
     }
 
     @GET
@@ -69,5 +96,5 @@ public class TcConsumptionService {
     @Produces("text/plain")
     public String countREST() {
         return facade.countREST();
-    }    
+    }
 }

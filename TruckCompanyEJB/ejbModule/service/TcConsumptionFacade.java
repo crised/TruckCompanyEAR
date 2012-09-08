@@ -25,10 +25,7 @@ public class TcConsumptionFacade {
         em.merge(entity);
     }
 
-    public void remove(Integer id) {
-    	TypedQuery<TcConsumption> query = em.createQuery("SELECT c FROM TcConsumption c WHERE c.id = :id AND c.deleted = FALSE", TcConsumption.class);
-    	query.setParameter("id", id);
-    	TcConsumption entity = query.getSingleResult();
+    public void remove(TcConsumption entity) {
         entity.setDeleted(true);
         entity.setDeletedDate(new Date());
         em.persist(entity);

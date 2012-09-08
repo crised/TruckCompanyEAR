@@ -25,10 +25,7 @@ public class TcTruckFacade {
         em.merge(entity);
     }
 
-    public void remove(Integer id) {
-    	TypedQuery<TcTruck> query = em.createQuery("SELECT t FROM TcTruck t WHERE t.id = :id AND t.deleted = FALSE", TcTruck.class);
-    	query.setParameter("id", id);
-    	TcTruck entity = query.getSingleResult();
+    public void remove(TcTruck entity) {
         entity.setDeleted(true);
         entity.setDeletedDate(new Date());
         em.persist(entity);

@@ -96,3 +96,46 @@ CREATE INDEX fki_user_role
   ON tc_role
   USING btree
   (user_id);
+  
+-- Table: tc_audit
+
+-- DROP TABLE tc_audit;
+
+CREATE TABLE tc_audit
+(
+  id serial NOT NULL,
+  action_name character varying(255) NOT NULL,
+  create_date timestamp without time zone NOT NULL,
+  user_id integer NOT NULL,
+  consumption_id integer NOT NULL,
+  CONSTRAINT tc_audit_pkey PRIMARY KEY (id),
+  CONSTRAINT audit_consumption FOREIGN KEY (consumption_id)
+      REFERENCES tc_consumption (id_consumption) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT audit_user FOREIGN KEY (user_id)
+      REFERENCES tc_user (id_user) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE tc_audit
+  OWNER TO postgres;
+
+-- Index: fki_audit_consumption
+
+-- DROP INDEX fki_audit_consumption;
+
+CREATE INDEX fki_audit_consumption
+  ON tc_audit
+  USING btree
+  (consumption_id);
+
+-- Index: fki_audit_user
+
+-- DROP INDEX fki_audit_user;
+
+CREATE INDEX fki_audit_user
+  ON tc_audit
+  USING btree
+  (user_id);
