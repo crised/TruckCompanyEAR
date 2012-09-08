@@ -12,12 +12,13 @@ This ficticious web app / service (client & server side clearly separated) consi
 
 10 truck small company that needs to keep track of the diesel consumptin of each truck. 
 
-Therefore there are 4 PostgreSQL tables:
+Therefore there are 5 PostgreSQL tables:
 
 - tc_user: users/password table
 - tc_truck: truck description
 - tc_consumption: consumption of each truck, related to tc_truck
 - tc_role: roles for users, related to tc_user
+- tc_audit: audit for consumptions, related on tc_user and tc_consumption
 
 Always keep this folder structure:
 
