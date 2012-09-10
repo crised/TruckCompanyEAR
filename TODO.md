@@ -1,13 +1,11 @@
 TODO LIST
 =========
 
-1. Hash/Salt Password
+1. Authentication/Authorization (remember me? logic / session expiration)
 
-2. Soft Remove rows from Database, by adding another column. e.g. Column can show timestamp when deleted, or 0 when it wasn't deleted.
+2. Forms. We need forms to:
 
-3. Try packing everything inside one WAR file. 
-
-4. Authentication/Authorization (remember me? logic / session expiration)
-
-5. Basic Auth
-
+a) enter a consumption.
+b) enter a truck.
+c) delete a consumption. (maybe we can do this with a button)
+c) delete a truck. (a button will do as well)
