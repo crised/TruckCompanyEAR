@@ -1,12 +1,11 @@
 TODO LIST Client Side
 =========
 
-UI is 100% JS/Jquery, no library hacks allowed. 
+UI is 100% JS/Jquery, HTML5, no library hacks allowed. 
 
 I'm thinking in using these:
 
 - Jquery Datatables 
-- Jeditable
 - Jvalidate ?
 - jQuery Visualize
 
