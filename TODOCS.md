@@ -19,13 +19,12 @@ Please sugest other.
 
 3. Test all the functions, modify.
 
-<<<<<<< HEAD
 Possible issues: 
 
 1. Browser tab change
-=======
+
 Nice example of AJAX/Flot: (Ajax call, then picks a link in JSON format)
 
 http://people.iola.dk/olau/flot/examples/ajax.html
 http://www.flotcharts.org/
->>>>>>> schemes
+
