@@ -15,4 +15,4 @@ User: test
 
 Password: password1 
 
-hostname: telematic.telematic.cl
+LOCAL hostname: telematic.telematic.cl
