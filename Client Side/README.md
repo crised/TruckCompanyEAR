@@ -12,4 +12,7 @@ Proxy rule (to avoid violating Same Origin Policy):
 Content Directory is /var/www/html
 
 User: test
+
 Password: password1 
+
+hostname: telematic.telematic.cl
