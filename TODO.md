@@ -19,3 +19,7 @@ c) delete a truck. (a button will do as well)
 
 3. admin & user role
 >>>>>>> documentation
+
+4. jquery function when cookie has expired.
+
+5. json - datatables
