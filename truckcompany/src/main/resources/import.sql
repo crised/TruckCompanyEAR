@@ -19,3 +19,5 @@
 insert into Member_html5mobi (id, name, email, phone_number) values (0, 'John Smith', 'john.smith@mailinator.com', '2125551212')
 
 insert into tc_user (id_user, username, password) values (1,'user1','user1')
+
+insert into tc_user (id_user, username, password) values (3,'user2','user2')

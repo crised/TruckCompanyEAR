@@ -1,7 +1,6 @@
 package org.crised.truckcompany.model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,15 +25,14 @@ public class TcUser implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id_user")
     private Integer id_user;
-    @Basic(optional = false)
+
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "username")
     private String username;
-    @Basic(optional = false)
+
     @NotNull
     @Size(min = 1, max = 2147483647)
     @Column(name = "password")
