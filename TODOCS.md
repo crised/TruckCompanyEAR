@@ -5,7 +5,7 @@ UI is 100% JS/Jquery, HTML5, no library hacks allowed.
 
 Jquery plugins:
   
-  Twitter Bootstrap
+  Twitter Bootstrap (fluid layout, mobiles, ipads, browsers). 
   
   Datatables.net
   
