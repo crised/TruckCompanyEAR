@@ -7,14 +7,16 @@ TODO LIST
 
 3. Add forms to:
 
-a) enter a consumption. (Date - add to DataBase, Consumption Liters)
+  a) enter a consumption. (Date - add to DataBase, Consumption Liters)
 
-b) enter a truck (Brand, Plate)
+  b) enter a truck (Brand, Plate)
+
 
 4. Add buttons to:
 
-a) delete a consumption row.
+  a) delete a consumption row.
 
-d) delete a truck row. 
+  d) delete a truck row. 
+
 
 4. Add Admin Role. Admin: User + Delete Truck/Consumption
