@@ -3,13 +3,15 @@ TODO LIST Client Side
 
 UI is 100% JS/Jquery, HTML5, no library hacks allowed. 
 
-I'm thinking in using these:
+Jquery Mandatory:
 
-- Jquery Datatables 
-- Jvalidate ?
-- jQuery Visualize
+- Jquery UI
+- 
+- Theme Roller
 
-Please sugest other.
+- Datatables.net
+
+Please sugest other if needed.
 
 
 1. Change all jquery to newest version
