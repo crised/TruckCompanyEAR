@@ -7,7 +7,7 @@ Jquery plugins:
   
   Twitter Bootstrap (fluid layout, mobiles, ipads, browsers). 
   
-  Datatables.net
+  Datatables.net (http://datatables.net/blog/Twitter_Bootstrap)
   
 
 Please sugest other if needed.
