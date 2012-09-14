@@ -5,11 +5,9 @@ UI is 100% JS/Jquery, HTML5, no library hacks allowed.
 
 Jquery Mandatory:
 
-- Jquery UI
-- 
-- Theme Roller
-
-- Datatables.net
+  Jquery UI
+  Theme Roller
+  Datatables.net
 
 Please sugest other if needed.
 
