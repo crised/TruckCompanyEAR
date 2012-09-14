@@ -1,24 +1,22 @@
 TODO LIST
 =========
 
-1. Authentication/Authorization (remember me? logic / session expiration)
+1. Authentication/Authorization (remember me? logic / session expiration). JsessionID cookie should have a defined expiration.
 
-2. Forms. We need forms to:
+2. Implement data visualization scheme, for tc_consumption, tc_truck, tc_audit. (see wire frame)
 
-a) enter a consumption.
+3. Add forms to:
 
-b) enter a truck.
+  a) enter a consumption. (Date - add to DataBase, Consumption Liters)
 
-c) delete a consumption. (maybe we can do this with a button)
-<<<<<<< HEAD
+  b) enter a truck (Brand, Plate)
 
-d) delete a truck. (a button will do as well)
 
-=======
-c) delete a truck. (a button will do as well)
+4. Add buttons to:
 
-3. admin & user role
+  a) delete a consumption row.
 
-4. jquery function when cookie has expired.
+  d) delete a truck row. 
 
-5. json - datatables fix
+
+4. Add Admin Role. Admin: User + Delete Truck/Consumption

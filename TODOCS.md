@@ -3,13 +3,18 @@ TODO LIST Client Side
 
 UI is 100% JS/Jquery, HTML5, no library hacks allowed. 
 
-I'm thinking in using these:
+Jquery plugins:
+  
+  Twitter Bootstrap (fluid layout, mobiles, ipads, browsers). 
+  
+  Datatables.net (http://datatables.net/blog/Twitter_Bootstrap)
+  
+  Flot for Chart? It has to built nicely T Bootstrap
+  
+  See: http://stackoverflow.com/questions/119969/javascript-chart-library
+  
 
-- Jquery Datatables 
-- Jvalidate ?
-- jQuery Visualize
-
-Please sugest other.
+Please sugest other if needed.
 
 
 1. Change all jquery to newest version

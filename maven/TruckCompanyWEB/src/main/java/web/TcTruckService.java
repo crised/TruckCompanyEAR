@@ -1,7 +1,10 @@
 package web;
 
 import entities.TcTruck;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
@@ -56,8 +59,8 @@ public class TcTruckService {
 
     @GET
     @Produces({"application/json"})
-    public List<TcTruck> findAll() {
-        return facade.findAll();
+    public Map<String, List<TcTruck>> findAll() {
+        return Collections.singletonMap("trucks",facade.findAll());
     }
 
     @GET
