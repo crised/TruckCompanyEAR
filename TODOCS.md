@@ -9,7 +9,9 @@ Jquery plugins:
   
   Datatables.net (http://datatables.net/blog/Twitter_Bootstrap)
   
-  Flot for Chart? It has to built in T Bootstrap See: http://stackoverflow.com/questions/119969/javascript-chart-library
+  Flot for Chart? It has to built nicely T Bootstrap
+  
+  See: http://stackoverflow.com/questions/119969/javascript-chart-library
   
 
 Please sugest other if needed.
