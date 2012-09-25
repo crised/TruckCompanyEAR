@@ -22,7 +22,7 @@ import service.TcTruckFacade;
 
 @Stateless
 @Path("entities.tctruck")
-@RolesAllowed({ SecurityRole.USER })
+//@RolesAllowed({ SecurityRole.USER })
 public class TcTruckService {
 	
 	@EJB

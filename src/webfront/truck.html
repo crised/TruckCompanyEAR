@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User</title>
+<title>Truck</title>
 <style type="text/css" title="currentStyle">
 @import "css/demo_page.css";
 
@@ -18,19 +18,31 @@
 <script src="js/jquery-ui.js" type="text/javascript"></script>
 <script src="js/jquery.validate.js" type="text/javascript"></script>
 <script src="js/jquery.dataTables.editable.js" type="text/javascript"></script>
+<script src="js/tcinit.js" type="text/javascript"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/sha256.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js"></script>
 <script type="text/javascript" charset="utf-8">
               $(document).ready( function () {
                 
-                var url = 'http://localhost:8080/truckcompany/rest/entities.tcuser';
-                
+                var url = AJAX_BASE_URL + '/entities.tctruck';
+                var user = 'test';
+                var password='password';
+
+                function make_base_auth(user, password) {
+                  var tok = user + ':' + password;
+                  var hash = btoa(tok);
+                  return "Basic " + hash;
+                }
+                                
                 console.log(url);
                 
                 $.ajax({
                         type: "GET",
-                        dataType: "jsonp",
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
                         url: url,
                         data: {},
-               			success: function(result) {
+                        success: function(result) {
                             console.log("SUCCESS");
                             console.log(result);
                         },
@@ -47,19 +59,20 @@
                 });              
                 
                 $.getJSON(url, function(data){                    
-                    if(data) {                        
+                    if(data) {
+						data = data.trucks;
                         if(!$.isArray(data)) {
                             eTable.fnAddData([
                                 data.tcUser.id,
                                 data.tcUser.username,
                                 data.tcUser.password
                             ]);
-                        } else {                            
+                        } else {
                             $.each(data, function(i, tcUser) {                            
                                 eTable.fnAddData([
                                     tcUser.id,
-                                    tcUser.username,
-                                    tcUser.password
+                                    tcUser.brand,
+                                    tcUser.plate
                                 ]);
                             });
                         }
@@ -137,7 +150,7 @@
 </head>
 <body>
 	<div id="members"></div>
-	<h1>User</h1>
+	<h1>Truck</h1>
 	<form action="#" id="formAddNewRow" title="Add new record">
 		<label for="username">Username</label> <input type="text"
 			name="username" id="username" rel="0" /> <label for="password">Password</label>
