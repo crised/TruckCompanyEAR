@@ -139,3 +139,7 @@ CREATE INDEX fki_audit_user
   ON tc_audit
   USING btree
   (user_id);
+
+CREATE SEQUENCE tc_truck_seq
+   START 100
+   MINVALUE 100;
