@@ -20,3 +20,9 @@ TODO LIST
 
 
 4. Add Admin Role. Admin: User + Delete Truck/Consumption
+
+5. Handle & Response Exceptions like:
+
+Caused by: org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "unique_tc_truck_plate"
+  Detail: Key (plate)=(5) already exists.
+                        
