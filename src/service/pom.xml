@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -15,14 +14,13 @@
 		<maven.compiler.debug>false</maven.compiler.debug>
 		<maven.compiler.optimize>true</maven.compiler.optimize>
 		<maven.compiler.deprecation>true</maven.compiler.deprecation>
-
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<modules>
 		<module>TruckCompanyEJB</module>
-		<module>TruckCompanyWEB</module>
 		<module>TruckCompanyEAR</module>
+		<module>truckcompanywebfront</module>
 	</modules>
 
   <build>
@@ -51,7 +49,7 @@
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-war-plugin</artifactId>
 			<version>2.1</version>
-        </plugin>
+		</plugin>
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-ear-plugin</artifactId>
@@ -102,12 +100,12 @@
 		<dependency>
 			<groupId>org.crised</groupId>
 			<artifactId>truckcompany.ejb</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0-FINAL</version>
 		</dependency>
 		<dependency>
 			<groupId>org.crised</groupId>
-			<artifactId>truckcompany.web</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<artifactId>truckcompanywebfront</artifactId>
+			<version>1.0-FINAL</version>
 		</dependency>
     </dependencies>
   </dependencyManagement>
