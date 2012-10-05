@@ -3,6 +3,8 @@ TODO LIST Client Side
 
 UI is 100% JS/Jquery, HTML5, no library hacks allowed. 
 
+What about using a template? http://themeforest.net/item/adminica-the-professional-admin-template/full_screen_preview/160638
+
 Jquery plugins:
   
   Twitter Bootstrap (fluid layout, mobiles, ipads, browsers). 
